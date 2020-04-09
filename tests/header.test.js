@@ -12,20 +12,22 @@ afterEach(async () => {
 });
 
 test('We can launch a browser', async () => {
-  const text = await page.$eval('a.brand-logo', (el) => el.innerHTML);
+  const text = await page.getContentsOf('a.brand-logo', (el) => el.innerHTML);
   expect(text).toBe('Blogster');
-});
+}, 10000);
 
 test('clicking login starts oauth flow', async () => {
   await page.click('.right a');
 
   const url = await page.url();
-  console.log({ url });
   expect(url.includes('accounts.google.com'));
-});
+}, 10000);
 
 test('When signed in, shows logout button', async () => {
   await page.login();
-  const text = await page.$eval('a[href="/auth/logout"]', (el) => el.innerHTML);
+  const text = await page.getContentsOf(
+    'a[href="/auth/logout"]',
+    (el) => el.innerHTML,
+  );
   expect(text).toEqual('Logout');
-});
+}, 10000);
