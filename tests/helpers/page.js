@@ -5,6 +5,7 @@ class CustomPage {
   static async build() {
     const browser = await puppeteer.launch({
       headless: false,
+      args: ['--disable-dev-shm-usage', '--shm-size=1gb'],
     });
 
     const page = await browser.newPage();
