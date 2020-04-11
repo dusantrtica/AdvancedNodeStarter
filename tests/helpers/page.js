@@ -4,8 +4,9 @@ const sessionFactory = require('../factories/sessionFactory');
 class CustomPage {
   static async build() {
     const browser = await puppeteer.launch({
-      headless: false,
-      args: ['--disable-dev-shm-usage', '--shm-size=1gb'],
+      headless: true,
+      // args: ['--disable-dev-shm-usage', '--shm-size=1gb'],
+      args: ['--no-sandbox']
     });
 
     const page = await browser.newPage();
@@ -25,12 +26,12 @@ class CustomPage {
   async login() {
     const user = await userFactory();
     const { session, sig } = sessionFactory(user);
-    await this.page.goto('localhost:3000/blogs');
+    await this.page.goto('http://localhost:3000/blogs');
     await this.page.setCookie({ name: 'session', value: session });
     await this.page.setCookie({ name: 'session.sig', value: sig });
 
     // moramo reload da bi se izmene primenile
-    await this.page.goto('localhost:3000/blogs');
+    await this.page.goto('http://localhost:3000/blogs');
 
     // moramo da cekamo da se stranica renderuje, ne mozemo samo da rokamo
     // naredbe
