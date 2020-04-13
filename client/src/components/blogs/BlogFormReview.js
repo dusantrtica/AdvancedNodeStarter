@@ -8,9 +8,9 @@ import * as actions from '../../actions';
 
 class BlogFormReview extends Component {
   state = {
-    file: null
+    file: null,
   };
-  
+
   renderFields() {
     const { formValues } = this.props;
 
@@ -31,8 +31,7 @@ class BlogFormReview extends Component {
       <div>
         <button
           className="yellow darken-3 white-text btn-flat"
-          onClick={onCancel}
-        >
+          onClick={onCancel}>
           Back
         </button>
         <button className="green btn-flat right white-text">
@@ -44,8 +43,7 @@ class BlogFormReview extends Component {
   }
 
   onFileChange(event) {
-    this.setState({file: event.target.files[0]});
-    console.log(event.target.files);
+    this.setState({ file: event.target.files[0] });
   }
 
   onSubmit(event) {
@@ -62,7 +60,11 @@ class BlogFormReview extends Component {
         <h5>Please confirm your entries</h5>
         {this.renderFields()}
         <h5>Add an Image</h5>
-        <input type="file" accept="image/*" onChange={this.onFileChange.bind(this)}/>
+        <input
+          type="file"
+          accept="image/*"
+          onChange={this.onFileChange.bind(this)}
+        />
         {this.renderButtons()}
       </form>
     );
