@@ -7,5 +7,8 @@ module.exports = {
   googleClientSecret: 'KnH-rZC23z4fr2CN4ISK4srN',
   mongoURI,
   cookieKey: '123123123',
-  redisUrl: 'redis://127.0.0.1:6379'
+  redisUrl: 'redis://127.0.0.1:6379',
+  accessKeyId: 'AKIAZGXJRTUNFSRZ6P7L',
+  // secretAccessKey: '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'
+  secretAccessKey: process.env.secretAccessKey
 };
